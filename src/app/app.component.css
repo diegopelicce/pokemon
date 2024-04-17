@@ -1,0 +1,15 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.outer-wrapper {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+::ng-deep body {
+  max-height: calc(100% - 104px) !important;
+}

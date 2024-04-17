@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ColumnType, IgxColumnComponent, IgxGridComponent, IgxPaginatorComponent } from 'igniteui-angular';
-import { Employee, employeesData } from './localData';
 import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-lista-baralho',
   templateUrl: './lista-baralho.component.html',
-  styleUrls: ['./lista-baralho.component.scss'],
+  styleUrls: ['./lista-baralho.component.css'],
   standalone: true,
-  imports: [IgxGridComponent, IgxPaginatorComponent]
+  imports: [IgxGridComponent, IgxColumnComponent, IgxPaginatorComponent]
 })
 export class ListaBaralhoComponent implements OnInit {
+  @ViewChild('myGrid', { read: IgxGridComponent }) grid!: IgxGridComponent
+  pageNumber = 1
+  pageSize = 10
   public localData: any[] = [];
   title = 'lista-baralho';
 
