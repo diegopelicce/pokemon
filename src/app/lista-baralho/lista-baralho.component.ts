@@ -12,7 +12,7 @@ import { HttpService } from '../services/http.service';
 export class ListaBaralhoComponent implements OnInit {
   @ViewChild('myGrid', { read: IgxGridComponent }) grid!: IgxGridComponent
   pageNumber = 1
-  pageSize = 10
+  pageSize = 15
   public localData: any[] = [];
   title = 'lista-baralho';
 
@@ -21,9 +21,27 @@ export class ListaBaralhoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.httpService.getCards(1, 10).subscribe(res => {
+    this.loadData()
+  }
+
+  loadData() {
+    this.httpService.getCards(this.pageNumber, this.pageSize).subscribe(res => {
       this.localData = res.data
     })
+  }
+
+  editar(event: any) {
+    console.log(event)
+  }
+
+  perPageChange(pageSize: number) {
+    this.pageSize = pageSize
+    this.loadData()
+  }
+
+  perPage(pageNumber: number) {
+    this.pageNumber = pageNumber
+    this.loadData()
   }
 
   public onColumnInit(column: ColumnType): void {
